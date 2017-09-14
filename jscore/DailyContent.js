@@ -1,35 +1,35 @@
-'use strict'
+'use strict';
 
 import React, { Component } from 'react'
 import { ScrollView, View, TouchableHighlight, Image, Text, StyleSheet } from 'react-native'
 import NavigationBar from 'react-native-navigationbar'
 import WebViewPage from './WebViewPage'
 
-const HEADER_HEIGHT = 400
+const HEADER_HEIGHT = 400;
 
 class DailyContent extends Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       opacity: 0
     }
   }
 
   onScroll (event) {
-    const MAX = HEADER_HEIGHT - 64
-    let y = event.nativeEvent.contentOffset.y
+    const MAX = HEADER_HEIGHT - 64;
+    let y = event.nativeEvent.contentOffset.y;
     if (y > MAX) {
       y = MAX
     }
-    const opacity = y / MAX // 透明度，0 完全透明，1＋不透明
+    const opacity = y / MAX; // 透明度，0 完全透明，1＋不透明
     this.setState({
       opacity: opacity
     })
   }
 
   render () {
-    let contentData = this.props.contentData
-    let thumbnail = (typeof contentData.results.福利[0].url !== 'undefined') ? contentData.results.福利[0].url : ''
+    let contentData = this.props.contentData;
+    let thumbnail = (typeof contentData.results.福利[0].url !== 'undefined') ? contentData.results.福利[0].url : '';
 
     let Header = (
       <NavigationBar title= {contentData.date}
@@ -40,7 +40,7 @@ class DailyContent extends Component {
           barStyle= {styles.navbar}
           backFunc={() => {
             this.props.navigator.pop()
-          }}/>)
+          }}/>);
 
     return (
         <View needsOffscreenAlphaCompositing renderToHardwareTextureAndroid style= {styles.container}>
@@ -88,7 +88,7 @@ class DailyContent extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: '#252528',
     flex: 1
@@ -134,6 +134,6 @@ var styles = StyleSheet.create({
     top: 33.9,
     left: 14.5
   }
-})
+});
 
-module.exports = DailyContent
+module.exports = DailyContent;

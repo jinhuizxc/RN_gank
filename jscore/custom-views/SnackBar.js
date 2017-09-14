@@ -2,7 +2,7 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-'use strict'
+'use strict';
 import React, { Component, PropTypes } from 'react'
 import {
   Animated,
@@ -13,7 +13,7 @@ import {
 
 export default class SnackBar extends Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = ({
       showValue: new Animated.Value(0)
     })
