@@ -32,25 +32,28 @@ class DailyContent extends Component {
         let thumbnail = (typeof contentData.results.福利[0].url !== 'undefined') ? contentData.results.福利[0].url : '';
 
 
+        var header = (
+            <NavigationBar
+                backHidden={false}
+                // barOpacity={0.8}
+                barTintColor='white'
+                barStyle={styles.navbar}
+                title={contentData.date}
+                backFunc={() => {
+                    this.props.navigator.pop()
+                }}/>
+        );
         return (
             <View style={styles.container}>
-                <NavigationBar
-                    backHidden={false}
-                    // barOpacity={0.8}
-                    barTintColor='white'
-                    barStyle={styles.navbar}
-                    title={contentData.date}
-                    backFunc={() => {
-                        this.props.navigator.pop()
-                    }}/>
+                {header}
                 <ScrollView
-                onScroll={this.onScroll.bind(this)}
-                scrollEventThrottle={5}
-                bounces={false}>
-                <Image source= {{uri: thumbnail}} style={styles.headerImage}/>
-                <View style={{flex:1}}>
-                {this._getViews(contentData)}
-                </View>
+                    onScroll={this.onScroll.bind(this)}
+                    scrollEventThrottle={5}
+                    bounces={false}>
+                    <Image source={{uri: thumbnail}} style={styles.headerImage}/>
+                    <View style={{flex: 1}}>
+                        {this._getViews(contentData)}
+                    </View>
                 </ScrollView>
             </View>
         )

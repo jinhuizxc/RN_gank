@@ -38,22 +38,25 @@ class HistoryList extends Component {
 
         this.state.isError = false;
 
+        var header = (
+            <NavigationBar
+                backHidden={false}
+                barTintColor='white'
+                barStyle={styles.navbar}
+                title='History'
+                actionName='About'
+                backFunc={() => {
+                    this.props.navigator.pop()
+                }}
+                actionFunc={() => {
+                    this.props.navigator.push({
+                        component: AboutPage
+                    })
+                }}/>
+        );
         return (
             <View style={styles.container}>
-                <NavigationBar
-                    backHidden={false}
-                    barTintColor='white'
-                    barStyle={styles.navbar}
-                    title='History'
-                    actionName='About'
-                    backFunc={() => {
-                        this.props.navigator.pop()
-                    }}
-                    actionFunc={() => {
-                        this.props.navigator.push({
-                            component: AboutPage
-                        })
-                    }}/>
+                {header}
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this._renderItem.bind(this)}
